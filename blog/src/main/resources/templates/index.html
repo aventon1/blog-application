@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{master-template::site-head}">
+    <title>My Polish Blog</title>
+</head>
+
+<body>
+
+<header th:replace="~{master-template::site-header}"></header>
+<h1>Welcome to My Polish Blog!</h1>
+<main id="posts">
+    <article th:each="p : ${recentThreePosts}">
+        <h2 class="title" th:text="${p.title}">Post Title</h2>
+        <div class="date">
+            <i>Date: </i>
+            <span th:text="${#dates.format(p.date, 'MM-dd-yyyy')}">Aug-27-2024</span>
+        </div>
+        <div class="user">
+            <i>User: </i>
+            <span th:text="${p.user.email}">Username</span>
+        </div>
+        <p class="content" th:utext="${p.content}">Post content</p>
+        <div>
+            <a href="#" class="post-link" th:href="@{/posts/view/{id}(id=${p.id})}">View Post</a>
+        </div>
+
+    </article>
+</main>
+
+
+    <footer th:replace="~{master-template::site-footer}"> </footer>
+
+</body>
+</html>

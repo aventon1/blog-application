@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{master-template::site-head}">
+    <title th:text="${post.title}">View Post</title>
+</head>
+
+<body>
+
+<header th:replace="~{master-template::site-header}"></header>
+<main id="posts">
+    <article>
+        <h2 class="title" th:text="${post.title}">Post Title</h2>
+        <div class="date">
+            <i>Date: </i>
+            <span th:text="${#dates.format(post.date, 'MM-dd-yyyy')}">Aug-27-2024</span>
+        </div>
+        <div class="user">
+            <i>User: </i>
+            <span th:text="${post.user.email}">Username</span>
+        </div>
+        <p class="content" th:utext="${post.content}">Post content</p>
+    </article>
+</main>
+
+
+<footer th:replace="~{master-template::site-footer}"> </footer>
+
+</body>
+</html>

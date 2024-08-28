@@ -1,0 +1,30 @@
+body>header {
+    background: blueviolet;
+    padding: 8px;
+}
+
+body>header>a>img, body>header a {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0px 5px;
+    font-size: 20px;
+    text-decoration: none;
+    color: white;
+}
+
+body > footer {
+    background: #d5bafd;
+    padding: 5px;
+    margin: 10px 0;
+    text-align: center;
+}
+
+#user-info {
+    float: right;
+    margin-top: 18px;
+}
+
+#user-info form {
+    display: inline-block;
+    margin-right: 10px;
+}
