@@ -15,7 +15,7 @@ public class PostsController {
     @Autowired
     private PostService postService;
 
-    @RequestMapping("/posts/view/{id}")
+    @GetMapping("/posts/view/{id}")
     public String view(@PathVariable("id") Long id, Model model) {
         Post post = postService.getPostById(id);
 
@@ -28,7 +28,7 @@ public class PostsController {
         return "posts/view";
     }
 
-    @RequestMapping("/posts")
+    @GetMapping("/posts")
     public String listPosts(Model model) {
         //System.out.println("IN  PostsController->listPosts()");
 

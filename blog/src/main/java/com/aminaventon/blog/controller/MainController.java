@@ -19,7 +19,7 @@ public class MainController {
     @Autowired
     private PostService postService;
 
-    @RequestMapping("/")
+    @GetMapping("/")
     public String index(Model model) {
 
         // Get list of all posts, display 3 on home page
