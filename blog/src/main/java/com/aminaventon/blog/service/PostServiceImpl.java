@@ -24,12 +24,17 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public Post getPostbyUserId(Long id) {
+        return null;
+    }
+
+    @Override
     public Post getPostById(Long id) {
         return this.postRepository.findById(id).get();
     }
 
     @Override
-    public Post createPost(Post post) {
+    public Post savePost(Post post) {
         return this.postRepository.save(post);
     }
 

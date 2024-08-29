@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{master-template::site-head}">
+    <title>Posts</title>
+</head>
+
+<body>
+
+<header th:replace="~{master-template::site-header}"></header>
+
+<div class ="container">
+    <div class = "row">
+        <h1> List Posts </h1>
+    </div>
+
+    <table class = "post-table">
+        <thead class = "post-table-head">
+        <tr>
+            <th> User </th>
+            <th> Post Title </th>
+            <th> Post Content </th>
+            <th> Actions </th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each = "post : ${posts}">
+            <td th:text = "${post.user.email}"></td>
+            <td th:text = "${post.title}"></td>
+            <td th:text = "${post.content}"></td>
+            <td>
+                <a th:href = "@{/posts/edit/{id}(id=${post.id})}"
+                   class = "btn-update">Edit</a>
+
+                <a th:href = "@{/posts/{id}(id=${post.id})}"
+                   class = "btn-delete">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class = "row">
+        <div class = "post-new">
+            <a th:href = "@{/posts/new}" class = "btn-create"> Create New Post </a>
+        </div>
+    </div>
+
+</div>
+
+<footer th:replace="~{master-template::site-footer}"> </footer>
+
+</body>
+</html>

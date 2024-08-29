@@ -17,7 +17,8 @@ public class Post {
     @Column(nullable = false)
     private String content;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    //optional = false
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
     private User user;
 
     @Column(nullable = false)
@@ -26,11 +27,22 @@ public class Post {
     public Post () {
     }
 
-    public Post(Long id, String title, String content, User user) {
-        this.id = id;
+    /*
+    public Post(String title, String content, Date date, User user) {
+        super();
         this.title = title;
         this.content = content;
+        this.date = date;
         this.user = user;
+    }
+
+     */
+
+    public Post(String title, String content, Date date) {
+        super();
+        this.title = title;
+        this.content = content;
+        this.date = date;
     }
 
     public Long getId() {
