@@ -52,8 +52,37 @@ public class PostsController {
 
     @PostMapping("/posts")
     public String savePost(@ModelAttribute("post") Post post) {
-        System.out.println("IN  PostsController->savePost()");
+        //System.out.println("IN  PostsController->savePost()");
         postService.savePost(post);
+        return "redirect:/posts";
+    }
+
+    @GetMapping("/posts/edit/{id}")
+    public String editPostForm(@PathVariable Long id, Model model) {
+        System.out.println("IN  PostsController->editPostForm");
+        model.addAttribute("post", postService.getPostById(id));
+        return "posts/edit_post";
+    }
+
+    @PostMapping("/posts/{id}")
+    public String editPost(@PathVariable Long id, @ModelAttribute("post") Post post, Model model) {
+
+        // get post from db by id
+        Post existingPost = postService.getPostById(id);
+
+        existingPost.setId(id);
+        existingPost.setTitle(post.getTitle());
+        existingPost.setContent(post.getContent());
+
+        // save updated post object
+        postService.editPost(existingPost);
+        return "redirect:/posts";
+    }
+
+    @GetMapping("/posts/{id}")
+    public String deletePost(@PathVariable Long id) {
+
+        postService.deletePostById(id);
         return "redirect:/posts";
     }
 
