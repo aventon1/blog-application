@@ -2,26 +2,30 @@ package com.aminaventon.blog.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
+/**
+ * SecurityConfiguration
+ */
 @EnableWebSecurity
 @EnableMethodSecurity
 @Configuration
 public class SecurityConfiguration {
 
 
-
+    /**
+     * This method loads user data for simple Spring Security
+     * @return InMemoryUserDetailsManager(user1,admin)
+     */
     @Bean
     public UserDetailsService userDetailsService(){
         UserDetails user1 = User.builder()
@@ -40,8 +44,10 @@ public class SecurityConfiguration {
     }
 
 
-
-    private static final String[] WHITELIST = {
+    /**
+     * This method lists auth resources for all users
+     */
+    private static final String[] authorizedResources = {
             "/",
             "/favicon.ico",
             "/css/**",
@@ -53,14 +59,19 @@ public class SecurityConfiguration {
     };
 
 
-
+    /**
+     * This method uses Spring Security to handle authorization requests
+     * @param http
+     * @return http
+     * @throws Exception
+     */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         // authorize pages
         http.authorizeHttpRequests(auth -> {
             auth.
-                    requestMatchers(WHITELIST).permitAll();
+                    requestMatchers(authorizedResources).permitAll();
 
             auth.
                     anyRequest().authenticated();

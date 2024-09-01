@@ -6,6 +6,9 @@ import lombok.*;
 import java.util.Collection;
 import java.util.HashSet;
 
+/**
+ * User is an object that holds user attributes id, firstName, lasName, email, password
+ */
 @Entity
 @Table(name = "users")
 @NoArgsConstructor

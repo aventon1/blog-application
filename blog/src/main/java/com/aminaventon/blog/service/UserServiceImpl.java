@@ -17,30 +17,58 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+/**
+ * UserServiceImpl implements the UserService interface
+ */
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * This method finds User by email
+     * @param email
+     * @return User
+     */
     public User findByEmail(String email){
         return userRepository.findByEmail(email);
     }
 
+    /**
+     * This method saves a User
+     * @param user
+     * @return User
+     */
     public User save(User user){
         return userRepository.save(user);
     }
 
+    /**
+     * This method finds User by id
+     * @param id
+     * @return
+     */
     @Override
     public User findById(Long id) {
         return userRepository.findById(id).get();
     }
 
+    /**
+     * This method returns a list of all Users
+     * @return List<User>
+     */
+    @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
+    /**
+     * This method authenticates a user by email and password with Spring Security
+     * @param email
+     * @return
+     * @throws UsernameNotFoundException
+     */
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email);
         if (user == null){

@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ *  PostsController for handling incoming HTTP requests and returning an appropriate responses
+ *  for post pages and CRUD: post, view, edit, delete
+ */
 @Controller
 public class PostsController {
 
@@ -21,6 +25,11 @@ public class PostsController {
     @Autowired
     private UserService userService;
 
+    /**
+     * This method receives HTTP GET request for /posts/view/{id}
+     * @param id, model
+     * @return posts/view
+     */
     @GetMapping("/posts/view/{id}")
     public String view(@PathVariable("id") Long id, Model model) {
 
@@ -36,18 +45,25 @@ public class PostsController {
         return "posts/view";
     }
 
+    /**
+     * This method receives HTTP GET request for /posts/posts
+     * @param  model
+     * @return posts/posts
+     */
     @GetMapping("/posts")
     public String listPosts(Model model) {
-        //System.out.println("IN  PostsController->listPosts()");
 
-        // TODO: get posts by user id
-        // all posts for now
         List<Post> posts = postService.getAllPosts();
 
         model.addAttribute("posts", posts);
         return "posts/posts";
     }
 
+    /**
+     * This method receives HTTP GET request for posts/create_post
+     * @param model
+     * @return posts/create_post
+     */
     @GetMapping("/posts/new")
     public String createPostForm(Model model) {
 
@@ -62,6 +78,11 @@ public class PostsController {
         return "posts/create_post";
     }
 
+    /**
+     * This method processes HTTP POST request for /posts
+     * @param post
+     * @return redirect:/posts
+     */
     @PostMapping("/posts")
     public String savePost(@ModelAttribute("post") Post post) {
 
@@ -71,6 +92,11 @@ public class PostsController {
         return "redirect:/posts";
     }
 
+    /**
+     * This method receives HTTP GET request for /posts/edit/{id}
+     * @param id, model
+     * @return posts/edit_post
+     */
     @GetMapping("/posts/edit/{id}")
     @PreAuthorize("isAuthenticated()")
     public String editPostForm(@PathVariable Long id, Model model) {
@@ -80,6 +106,11 @@ public class PostsController {
         return "posts/edit_post";
     }
 
+    /**
+     * This method processes HTTP POST request for /posts/{id}
+     * @param id, post, model
+     * @return redirect:/posts
+     */
     @PostMapping("/posts/{id}")
     public String editPost(@PathVariable Long id, @ModelAttribute("post") Post post, Model model) {
 
@@ -101,6 +132,11 @@ public class PostsController {
         return "redirect:/posts";
     }
 
+    /**
+     * This method receives HTTP GET request for /posts/{id}
+     * @param id
+     * @return redirect:/posts
+     */
     @GetMapping("/posts/{id}")
     public String deletePost(@PathVariable Long id) {
 

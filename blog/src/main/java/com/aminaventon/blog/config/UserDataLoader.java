@@ -15,6 +15,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * UserDataLoader loads seed data on initial run when database is empty
+ */
 @Component
 public class UserDataLoader implements CommandLineRunner {
 
@@ -27,6 +30,11 @@ public class UserDataLoader implements CommandLineRunner {
     @Autowired
     private RoleRepository roleRepository;
 
+    /**
+     *  This method creates all the initial data for the database
+     * @param args
+     * @throws Exception
+     */
     @Override
     public void run(String... args) throws Exception {
 

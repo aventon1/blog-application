@@ -5,6 +5,9 @@ import com.aminaventon.blog.model.User;
 
 import java.util.List;
 
+/**
+ * UserService is an interface with abstract CRUD methods
+ */
 public interface UserService {
     User findByEmail(String email);
     User save(User user);

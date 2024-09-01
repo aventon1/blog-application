@@ -18,6 +18,10 @@ import java.util.stream.Collectors;
 
 import java.util.List;
 
+/**
+ *  MainController for handling incoming HTTP requests and returning an appropriate responses
+ *  for pages: home, login, logout
+ */
 @Controller
 public class MainController {
 
@@ -27,6 +31,11 @@ public class MainController {
     @Autowired
     private UserService userService;
 
+    /**
+     * This method receives HTTP GET request for /
+     * @param model
+     * @return index
+     */
     @GetMapping("/")
     public String index(Model model) {
 
@@ -39,47 +48,24 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping("/admin")
-    public String admin(Model model) {
-        return "admin";
-    }
-
+    /**
+     * This method receives HTTP GET request for /login
+     * @param model
+     * @return login
+     */
     @GetMapping("/login")
     public String login(Model model) {
         return "login";
     }
 
+    /**
+     * This method receives HTTP GET request for /logout
+     * @return "Logged Out!"
+     */
     @ResponseBody
     @GetMapping("/logout")
     public String logoutResponse() {
         return "Logged Out!";
-    }
-
-    @GetMapping("/user")
-    public String userIndex() {
-        return "user/index";
-    }
-
-    @GetMapping("/test")
-    public String test(Model model) {
-
-        System.out.println("IN  MainController->test()");
-
-
-        Post post = new Post();
-        //post.setTitle("Title");
-        //post.setContent("content");
-
-        User user = userService.findByEmail("user1@email.com");
-
-        // add account to post
-        post.setUser(user);
-
-        System.out.println(post.getUser().getId());
-
-
-        System.out.println("leaving  MainController->test()");
-        return "test";
     }
 
 }

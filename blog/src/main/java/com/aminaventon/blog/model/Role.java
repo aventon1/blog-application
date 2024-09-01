@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
 
+/**
+ * Role is an object for authenticating Users
+ */
 @Entity
 @Table(name = "roles")
 @NoArgsConstructor

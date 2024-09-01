@@ -5,6 +5,9 @@ import lombok.*;
 
 import java.util.Date;
 
+/**
+ * Post is an object that holds post attributes id, title, content, User, date
+ */
 @Entity
 @Table(name = "posts")
 @NoArgsConstructor

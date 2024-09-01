@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 import java.awt.print.Pageable;
 import java.util.List;
 
+/**
+ * PostRepository is an interface that extends JpaRepository for basic CRUD operations
+ */
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 

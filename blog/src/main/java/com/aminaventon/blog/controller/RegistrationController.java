@@ -13,13 +13,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
+/**
+ *  RegistrationController for handling incoming HTTP requests and returning an appropriate responses
+ *  for registration pages
+ */
 @Controller
 public class RegistrationController {
 
     @Autowired
     private UserService userService;
 
+    /**
+     * This method receives HTTP GET request for /registration
+     * @param model
+     * @return registration
+     */
     @GetMapping("/registration")
     public String showRegistrationForm(Model model) {
 
@@ -32,6 +40,11 @@ public class RegistrationController {
         return "registration";
     }
 
+    /**
+     * This method processes HTTP POST request for /registration
+     * @param user
+     * @return registration
+     */
     @PostMapping("/registration")
     public String registerUserAccount(@Valid @ModelAttribute("user") User user) {
 
