@@ -1,7 +1,10 @@
 package com.aminaventon.blog.controller;
 
 import com.aminaventon.blog.model.Post;
+import com.aminaventon.blog.model.User;
 import com.aminaventon.blog.service.PostService;
+import com.aminaventon.blog.service.UserService;
+import com.aminaventon.blog.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +17,8 @@ public class PostsController {
 
     @Autowired
     private PostService postService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/posts/view/{id}")
     public String view(@PathVariable("id") Long id, Model model) {
@@ -42,8 +47,15 @@ public class PostsController {
     @GetMapping("/posts/new")
     public String createPostForm(Model model) {
 
+
+        // hard coded user
+        //User user = userService.findById(1L);
+
         // create post object to hold post form data
         Post post = new Post();
+
+        // add account to post
+        //post.setUser(user);
 
         model.addAttribute("post", post);
         return "posts/create_post";
@@ -51,14 +63,14 @@ public class PostsController {
 
     @PostMapping("/posts")
     public String savePost(@ModelAttribute("post") Post post) {
-        //System.out.println("IN  PostsController->savePost()");
+
         postService.savePost(post);
         return "redirect:/posts";
     }
 
     @GetMapping("/posts/edit/{id}")
     public String editPostForm(@PathVariable Long id, Model model) {
-        System.out.println("IN  PostsController->editPostForm");
+
         model.addAttribute("post", postService.getPostById(id));
         return "posts/edit_post";
     }
@@ -68,6 +80,10 @@ public class PostsController {
 
         // get post from db by id
         Post existingPost = postService.getPostById(id);
+
+        if (post == null) {
+            return "error_page";
+        }
 
         existingPost.setId(id);
         existingPost.setTitle(post.getTitle());

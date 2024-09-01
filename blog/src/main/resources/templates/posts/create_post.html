@@ -16,9 +16,6 @@
             <div class = "card-body">
                 <form th:action="@{/posts}" th:object = "${post}" method="POST">
 
-                    <input type="hidden" th:field="*{user}">
-                    <input type="hidden" th:field="*{date}">
-
                     <div class ="form-group">
                         <label> Post Title </label>
                         <input

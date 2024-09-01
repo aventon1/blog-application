@@ -1,7 +1,9 @@
 package com.aminaventon.blog.controller;
 
 import com.aminaventon.blog.model.Post;
+import com.aminaventon.blog.model.User;
 import com.aminaventon.blog.service.PostService;
+import com.aminaventon.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,9 @@ public class MainController {
 
     @Autowired
     private PostService postService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/")
     public String index(Model model) {
@@ -50,6 +55,17 @@ public class MainController {
     @GetMapping("/user")
     public String userIndex() {
         return "user/index";
+    }
+
+    @GetMapping("/test")
+    public String test(Model model) {
+
+        User user = userService.findById(1L);
+
+        System.out.println("IN  MainController->test()");
+        System.out.println(user.getEmail());
+
+        return "test";
     }
 
 
