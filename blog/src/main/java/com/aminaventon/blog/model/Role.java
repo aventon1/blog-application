@@ -1,39 +1,40 @@
 package com.aminaventon.blog.model;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
+@Table(name = "roles")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+@Builder
 public class Role {
+
     @Id
+    @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
     private String name;
 
-    public Role() {
-    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
 
-    public Role(String name) {
-        this.name = name;
-    }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
-    public Long getId() {
-        return id;
-    }
+        Role role = (Role) o;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        return name.equals(role.name);
     }
 
     @Override
-    public String toString() {
-        return name;
+    public int hashCode() {
+        return name.hashCode();
     }
 }

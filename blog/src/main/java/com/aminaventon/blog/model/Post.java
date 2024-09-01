@@ -1,10 +1,18 @@
 package com.aminaventon.blog.model;
 
 import jakarta.persistence.*;
+import lombok.*;
+
 import java.util.Date;
 
 @Entity
 @Table(name = "posts")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+@Builder
 public class Post {
 
     @Id
@@ -24,20 +32,6 @@ public class Post {
     @Column(nullable = false)
     private Date date = new Date();
 
-    public Post () {
-    }
-
-    /*
-    public Post(String title, String content, Date date, User user) {
-        super();
-        this.title = title;
-        this.content = content;
-        this.date = date;
-        this.user = user;
-    }
-
-     */
-
     public Post(String title, String content, Date date) {
         super();
         this.title = title;
@@ -45,54 +39,4 @@ public class Post {
         this.date = date;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    @Override
-    public String toString() {
-        return "Post{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", user=" + user +
-                ", date=" + date +
-                '}';
-    }
 }

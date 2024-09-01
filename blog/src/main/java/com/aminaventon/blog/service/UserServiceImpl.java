@@ -7,6 +7,7 @@ import com.aminaventon.blog.repo.UserRepository;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Set;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,6 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /*
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -34,7 +36,7 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setEmail(registration.getEmail());
         user.setPassword(passwordEncoder.encode(registration.getPassword()));
-        user.setRoles(Arrays.asList(new Role("ROLE_USER")));
+        user.setRoles((Set<Role>) new Role("ROLE_USER"));
         return userRepository.save(user);
     }
 
