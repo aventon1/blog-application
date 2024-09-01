@@ -23,7 +23,10 @@ public class RegistrationController {
     @GetMapping("/registration")
     public String showRegistrationForm(Model model) {
 
+        // create new user
         User user = new User();
+
+        // add user to model
         model.addAttribute("user", user);
 
         return "registration";
@@ -32,6 +35,7 @@ public class RegistrationController {
     @PostMapping("/registration")
     public String registerUserAccount(@Valid @ModelAttribute("user") User user) {
 
+        // save user
         userService.save(user);
 
         return "redirect:/";

@@ -22,9 +22,11 @@ public class UserDataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+        // get posts from db
         List<Post> posts = postService.getAllPosts();
 
-        // If db empty, add data
+        // if db empty, add data
         if (posts.isEmpty()) {
 
             User user1 = new User();

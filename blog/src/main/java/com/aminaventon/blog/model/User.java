@@ -2,6 +2,8 @@ package com.aminaventon.blog.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,7 +34,7 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user")
-    private Set<Post> posts = new HashSet<Post>();
+    private Collection<Post> posts;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
@@ -41,12 +43,21 @@ public class User {
                     name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "role_name", referencedColumnName = "name"))
-    private Set<Role> roles = new HashSet<Role>();
+    private Collection<Role> roles = new HashSet<>();
 
     public User(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+    }
+
+    public String toString() {
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", roles=" + roles +
+                '}';
     }
 }

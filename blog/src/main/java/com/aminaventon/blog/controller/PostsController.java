@@ -22,8 +22,11 @@ public class PostsController {
 
     @GetMapping("/posts/view/{id}")
     public String view(@PathVariable("id") Long id, Model model) {
+
+        // get post by the id
         Post post = postService.getPostById(id);
 
+        // error page if id does not exist
         if (post == null) {
             return "error_page";
         }
@@ -64,13 +67,16 @@ public class PostsController {
     @PostMapping("/posts")
     public String savePost(@ModelAttribute("post") Post post) {
 
+        // save the post
         postService.savePost(post);
+
         return "redirect:/posts";
     }
 
     @GetMapping("/posts/edit/{id}")
     public String editPostForm(@PathVariable Long id, Model model) {
 
+        // get the post to be edited
         model.addAttribute("post", postService.getPostById(id));
         return "posts/edit_post";
     }
@@ -78,18 +84,20 @@ public class PostsController {
     @PostMapping("/posts/{id}")
     public String editPost(@PathVariable Long id, @ModelAttribute("post") Post post, Model model) {
 
-        // get post from db by id
+        // get post from by id
         Post existingPost = postService.getPostById(id);
 
+        // error page if id does not exist
         if (post == null) {
             return "error_page";
         }
 
+        // set id, title, content to edited post
         existingPost.setId(id);
         existingPost.setTitle(post.getTitle());
         existingPost.setContent(post.getContent());
 
-        // save updated post object
+        // save updated post
         postService.editPost(existingPost);
         return "redirect:/posts";
     }
@@ -97,7 +105,9 @@ public class PostsController {
     @GetMapping("/posts/{id}")
     public String deletePost(@PathVariable Long id) {
 
+        // delete post
         postService.deletePostById(id);
+
         return "redirect:/posts";
     }
 
