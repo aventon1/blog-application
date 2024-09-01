@@ -25,7 +25,7 @@ public class UserDataLoader implements CommandLineRunner {
         List<Post> posts = postService.getAllPosts();
 
         // If db empty, add data
-        if (posts.size() == 0) {
+        if (posts.isEmpty()) {
 
             User user1 = new User();
             user1.setFirstName("User1");
