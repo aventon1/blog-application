@@ -1,5 +1,6 @@
 package com.aminaventon.blog.controller;
 
+import com.aminaventon.blog.model.Post;
 import com.aminaventon.blog.model.User;
 import com.aminaventon.blog.repo.UserRegistrationDto;
 import com.aminaventon.blog.service.UserService;
@@ -15,45 +16,29 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/*
+
 @Controller
-@RequestMapping("/registration")
 public class RegistrationController {
 
     @Autowired
     private UserService userService;
 
-    @ModelAttribute("user")
-    public UserRegistrationDto userRegistrationDto() {
-        System.out.println("IN  UserRegController->UserRegistrationDto()");
-        return new UserRegistrationDto();
-    }
+    @GetMapping("/registration")
+    public String register(Model model) {
 
-    @GetMapping
-    public String showRegistrationForm(Model model) {
-        System.out.println("IN  UserRegController->showRegistrationForm()");
+        User user = new User();
+        model.addAttribute("user", user);
+
         return "registration";
     }
 
-    @PostMapping
-    public String registerUserAccount(@ModelAttribute("user") @Valid UserRegistrationDto userDto, BindingResult result){
+    @PostMapping("/registration")
+    public String registerNewUser(@ModelAttribute User user) {
 
-        System.out.println("IN  POST MAPPING UserRegController->registerUserAccount()");
-        User existing = userService.findByEmail(userDto.getEmail());
-        if (existing != null){
-            result.rejectValue("email", null, "There is already an account registered with that email");
-        }
+        userService.save(user);
 
-        System.out.println("ZZZZZZZZZZZZZZZ result:"+result.toString());
-
-        if (result.hasErrors()){
-            System.out.println("result:"+result.toString());
-            return "registration";
-        }
-
-        userService.save(userDto);
-        return "redirect:/registration?success";
+        return "redirect:/";
     }
-}
 
- */
+
+}

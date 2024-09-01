@@ -17,7 +17,7 @@
     <table class = "post-table">
         <thead class = "post-table-head">
         <tr>
-            <th> User </th>
+            <th> Name </th>
             <th> Date </th>
             <th> Post Title </th>
             <th> Post Content </th>
@@ -27,7 +27,7 @@
 
         <tbody>
         <tr th:each = "post : ${posts}">
-            <td th:text = "${post.user.email}"></td>
+            <td th:text = "${post.user.firstName}"></td>
             <td th:text = "${#dates.format(post.date, 'MM-dd-yyyy')}"></td>
             <td th:text = "${post.title}"></td>
             <td th:text = "${post.content}"></td>

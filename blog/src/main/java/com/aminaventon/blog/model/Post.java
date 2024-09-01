@@ -22,7 +22,7 @@ public class Post {
     @Column(nullable = false, length = 300)
     private String title;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
     //optional = false
@@ -33,7 +33,6 @@ public class Post {
     private Date date = new Date();
 
     public Post(String title, String content, Date date) {
-        super();
         this.title = title;
         this.content = content;
         this.date = date;
