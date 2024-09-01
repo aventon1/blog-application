@@ -6,6 +6,7 @@ import com.aminaventon.blog.service.PostService;
 import com.aminaventon.blog.service.UserService;
 import com.aminaventon.blog.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -50,17 +51,14 @@ public class PostsController {
     @GetMapping("/posts/new")
     public String createPostForm(Model model) {
 
-
-        // hard coded get user
-        //User user = userService.findByEmail("user1@email.com");
+        List<User> users = userService.getAllUsers();
 
         // create post object to hold post form data
         Post post = new Post();
-
-        // add account to post
-        //post.setUser(user);
+        post.setUser(users.get(0));
 
         model.addAttribute("post", post);
+        model.addAttribute("users", users);
         return "posts/create_post";
     }
 
@@ -74,6 +72,7 @@ public class PostsController {
     }
 
     @GetMapping("/posts/edit/{id}")
+    @PreAuthorize("isAuthenticated()")
     public String editPostForm(@PathVariable Long id, Model model) {
 
         // get the post to be edited

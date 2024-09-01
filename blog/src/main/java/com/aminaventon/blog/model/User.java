@@ -5,7 +5,6 @@ import lombok.*;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -36,13 +35,13 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Collection<Post> posts;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(
                     name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
-                    name = "role_name", referencedColumnName = "name"))
+                    name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles = new HashSet<>();
 
     public User(String firstName, String lastName, String email, String password) {

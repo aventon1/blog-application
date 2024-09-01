@@ -2,6 +2,7 @@ package com.aminaventon.blog.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.UuidGenerator;
 
 @Entity
 @Table(name = "roles")
@@ -16,7 +17,14 @@ public class Role {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column
     private String name;
+
+    public Role(String name) {
+        this.name = name;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -33,8 +41,8 @@ public class Role {
         return name.equals(role.name);
     }
 
-    @Override
-    public int hashCode() {
-        return name.hashCode();
-    }
+    //@Override
+    //public int hashCode() {
+    //    return name.hashCode();
+    //}
 }

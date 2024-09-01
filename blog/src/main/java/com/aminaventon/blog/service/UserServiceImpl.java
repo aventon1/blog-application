@@ -1,5 +1,6 @@
 package com.aminaventon.blog.service;
 
+import com.aminaventon.blog.model.Post;
 import com.aminaventon.blog.model.Role;
 import com.aminaventon.blog.model.User;
 import com.aminaventon.blog.repo.UserRepository;
@@ -13,6 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 
@@ -35,21 +37,21 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id).get();
     }
 
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
 
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email);
         if (user == null){
             throw new UsernameNotFoundException("Invalid username or password.");
         }
-        return new org.springframework.security.core.userdetails.User(user.getEmail(),
-                user.getPassword(),
-                mapRolesToAuthorities(user.getRoles()));
-    }
-
-    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){
-        return roles.stream()
+        List<GrantedAuthority> grantedAuthorities = user
+                .getRoles()
+                .stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toList());
-    }
 
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), grantedAuthorities);
+    }
 }

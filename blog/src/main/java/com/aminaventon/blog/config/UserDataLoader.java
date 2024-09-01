@@ -42,27 +42,32 @@ public class UserDataLoader implements CommandLineRunner {
             roleRepository.save(user);
 
             Role admin = new Role();
-            user.setName("ROLE_ADMIN");
+            admin.setName("ROLE_ADMIN");
             roleRepository.save(admin);
 
-            // create users
+            // create user
             User user1 = new User();
             user1.setFirstName("User1");
             user1.setLastName("User1");
             user1.setEmail("user1@email.com");
             user1.setPassword("password");
+
+            // set role
             Set<Role> roles1 = new HashSet<>();
-            roleRepository.findById("ROLE_USER").ifPresent(roles1::add);
-            roleRepository.findById("ROLE_ADMIN").ifPresent(roles1::add);
+            roles1.add(user);
+            roles1.add(admin);
             user1.setRoles(roles1);
 
+            // create user
             User user2 = new User();
             user2.setFirstName("User2");
             user2.setLastName("User2");
             user2.setEmail("user2@email.com");
             user2.setPassword("password");
+
+            // set role
             Set<Role> roles2 = new HashSet<>();
-            roleRepository.findById("ROLE_ADMIN").ifPresent(roles2::add);
+            roles2.add(user);
             user2.setRoles(roles2);
 
             userService.save(user1);

@@ -6,6 +6,11 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 import static org.springframework.security.config.Customizer.withDefaults;
@@ -14,6 +19,27 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableMethodSecurity
 @Configuration
 public class SecurityConfiguration {
+
+
+
+    @Bean
+    public UserDetailsService userDetailsService(){
+        UserDetails user1 = User.builder()
+                .username("user1@email.com")
+                .password("{noop}password")
+                .authorities("ROLE_USER")
+                .build();
+
+        UserDetails admin = User.builder()
+                .username("user2@email.com")
+                .password("{noop}password")
+                .authorities("ROLE_ADMIN")
+                .build();
+
+        return new InMemoryUserDetailsManager(user1,admin);
+    }
+
+
 
     private static final String[] WHITELIST = {
             "/",
@@ -24,18 +50,20 @@ public class SecurityConfiguration {
             "/fonts/**",
             "/webjars/**",
             "/registration",
-
     };
+
+
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        // authorize pages without authetication
+        // authorize pages
         http.authorizeHttpRequests(auth -> {
             auth.
                     requestMatchers(WHITELIST).permitAll();
 
-            auth.anyRequest().authenticated();
+            auth.
+                    anyRequest().authenticated();
         });
 
         // set up login handling
@@ -45,7 +73,7 @@ public class SecurityConfiguration {
                         .loginProcessingUrl("/login")
                         .usernameParameter("email")
                         .passwordParameter("password")
-                        .defaultSuccessUrl("/", true)
+                        .defaultSuccessUrl("/")
                         .failureUrl("/login?error")
                         .permitAll()
         );
