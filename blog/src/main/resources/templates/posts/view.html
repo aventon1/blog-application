@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{master-template::site-head}">
+<head th:replace="~{master_template::site-head}">
     <title th:text="${post.title}">View Post</title>
 </head>
 
 <body>
 
-<header th:replace="~{master-template::site-header}"></header>
+<header th:replace="~{master_template::site-header}"></header>
 <main id="posts">
     <article>
         <h2 class="title" th:text="${post.title}">Post Title</h2>
@@ -24,7 +24,7 @@
 </main>
 
 
-<footer th:replace="~{master-template::site-footer}"> </footer>
+<footer th:replace="~{master_template::site-footer}"> </footer>
 
 </body>
 </html>

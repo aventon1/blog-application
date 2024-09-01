@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="eng" xmlns:th="http://www.thymeleaf.org" >
+
+<head th:fragment ="site-head">
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}" />
+    <link rel="icon" href="../static/imgs/polish-icon.ico" th:href="@{/imgs/polish-icon.ico}" />
+    <script src="../static/js/jquery-3.7.1.min.js" th:src="@{/js/jquery-3.7.1.min.js}"></script>
+    <script src="../static/js/script.js" th:src="@{/js/script.js}"></script>
+</head>
+
+<body>
+<header th:fragment="site-header">
+    <a href="index.html" th:href="@{/}"><img src="../static/imgs/site-logo.png" th:src="@{/imgs/site-logo.png}" /></a>
+    <a href="index.html" th:href="@{/}">Home</a>
+    <a href="login.html" th:href="@{/login}">Login</a>
+    <a href="registration.html" th:href="@{/registration}">Register</a>
+    <a href="posts/index.html" th:href="@{/posts}">Posts</a>
+    <a href="users/index.html" th:href="@{/users}">Users</a>
+    <div id="user-info"> <span>Hello, <b>(user)</b></span>
+        <form method="post" th:action="@{/logout}">
+            <input type="submit" value="Logout"/>
+        </form>
+    </div>
+</header>
+
+<h1>Error</h1>
+<p>Sorry, you've reached this page in error! <</p>
+<a href="index.html" th:href="@{/}">Take me back home</a>
+
+<footer th:fragment="site-footer">
+    My Polish Blog, 2024
+</footer></body></html>

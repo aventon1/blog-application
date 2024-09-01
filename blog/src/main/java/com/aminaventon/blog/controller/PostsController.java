@@ -20,8 +20,7 @@ public class PostsController {
         Post post = postService.getPostById(id);
 
         if (post == null) {
-            //result.rejectValue("post", null, "Oops! No post found");
-            return "redirect:/";
+            return "error_page";
         }
 
         model.addAttribute("post", post);
