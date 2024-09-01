@@ -60,11 +60,22 @@ public class MainController {
     @GetMapping("/test")
     public String test(Model model) {
 
-        User user = userService.findById(1L);
-
         System.out.println("IN  MainController->test()");
-        System.out.println(user.getEmail());
 
+
+        Post post = new Post();
+        //post.setTitle("Title");
+        //post.setContent("content");
+
+        User user = userService.findByEmail("user1@email.com");
+
+        // add account to post
+        post.setUser(user);
+
+        System.out.println(post.getUser().getId());
+
+
+        System.out.println("leaving  MainController->test()");
         return "test";
     }
 

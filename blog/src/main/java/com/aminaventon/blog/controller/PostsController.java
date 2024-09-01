@@ -48,8 +48,8 @@ public class PostsController {
     public String createPostForm(Model model) {
 
 
-        // hard coded user
-        //User user = userService.findById(1L);
+        // hard coded get user
+        //User user = userService.findByEmail("user1@email.com");
 
         // create post object to hold post form data
         Post post = new Post();
