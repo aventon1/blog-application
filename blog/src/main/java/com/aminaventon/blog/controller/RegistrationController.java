@@ -4,6 +4,7 @@ import com.aminaventon.blog.model.User;
 import com.aminaventon.blog.service.UserService;
 
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,7 @@ public class RegistrationController {
     private UserService userService;
 
     @GetMapping("/registration")
-    public String register(Model model) {
+    public String showRegistrationForm(Model model) {
 
         User user = new User();
         model.addAttribute("user", user);
@@ -29,7 +30,7 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public String registerNewUser(@ModelAttribute User user) {
+    public String registerUserAccount(@Valid @ModelAttribute("user") User user) {
 
         userService.save(user);
 
