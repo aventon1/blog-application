@@ -30,7 +30,7 @@ spring.datasource.username=YOUR_USERNAME
 spring.datasource.password=YOUR_PASSWORD
 ```
 
-While running application, go to [http://localhost:8080/](http://localhost:8080/)
+Load application at [http://localhost:8080/](http://localhost:8080/)
 
 ## Seed Data
 - Initial User data is loaded in ```UserDataLoader.java```
