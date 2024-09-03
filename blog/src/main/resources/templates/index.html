@@ -19,7 +19,7 @@
         </div>
         <div class="user">
             <i>User: </i>
-            <span th:text="${post.user.firstName}">Name</span>
+            <span th:text="${post.user.firstName != null ? post.user.firstName : 'Name witheld'}">Name</span>
         </div>
         <p class="content" th:utext="${#strings.abbreviate(post.content,20)}">Post content</p>
         <div>
