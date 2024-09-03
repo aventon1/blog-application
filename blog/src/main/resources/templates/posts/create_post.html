@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="~{master_template::site-head}">
+    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}" />
     <title>Create Post</title>
 </head>
 
@@ -29,7 +30,7 @@
             </table>
 
             <h1 class = "text-center"> Create New Post </h1>
-            <div class = "card-body">
+            <div class = "create-post">
                 <form th:action="@{/posts}" th:object = "${post}" method="POST">
 
                     <div class ="form-group">
@@ -62,14 +63,14 @@
                                 type = "text"
                                 name = "content"
                                 th:field = "*{content}"
-                                class = "form-control"
+                                class = "form-content"
                                 placeholder="Enter Post Content"
                         />
                     </div>
                     <p th:if="${#fields.hasErrors('content')}" th:errorclass="error" th:errors="*{content}">Enter post content</p>
 
                     <div class = "box-footer">
-                        <button type="submit" class = "btn-submit">
+                        <button type="submit" id="button-create">
                             Submit
                         </button>
                     </div>
