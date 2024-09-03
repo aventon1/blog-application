@@ -20,6 +20,7 @@
     </div>
 </div>
 
+<h1>Recent Blog Posts</h1>
 <main id="posts">
     <article th:each="post : ${recentThreePosts}">
         <h2 onclick="changeColor(this, 'purple')" class="title" th:text="${post.title}">Post Title</h2>

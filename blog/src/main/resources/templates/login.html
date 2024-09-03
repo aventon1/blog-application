@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="~{master_template::site-head}">
+    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}" />
     <title>Login Page</title>
 </head>
 
@@ -12,29 +13,32 @@
 <div class="container">
 
     <div class="row">
-        <div class="col">
+        <div class="log-header">
 
             <h1>Login page</h1>
 
-            <form action="#"
-                  th:action="@{/login}"
-                  method="POST">
-                <div>
-                    <label for="email">Email</label>
-                    <input id="email" type="text" name="email" placeholder="Email" />
-                </div>
-                <div>
-                    <label for="password">Password</label>
-                    <input id="password" type="password" name="password" placeholder="Password" />
-                </div>
-                <button type="submit">Login!</button>
-            </form>
+            <div class ="login">
+                <form action="#"
+                      th:action="@{/login}"
+                      method="POST">
+                    <div>
+                        <label for="email">Email</label>
+                        <input id="email" type="text" name="email" placeholder="Email" />
+                    </div>
+                    <div>
+                        <label for="password">Password</label>
+                        <input id="password" type="password" name="password" placeholder="Password" />
+                    </div>
+                    <button id="button" type="submit">Login!</button>
+                </form>
 
                 <div class="form-group">
 						<span>New user? <a href="/" th:href="@{/registration}">Register
 								here</a></span>
                 </div>
-            </form>
+
+            </div>
+
         </div>
     </div>
 </div>
