@@ -58,7 +58,6 @@ public class SecurityConfiguration {
      */
     private static final String[] authorizedResources = {
             "/",
-            "/favicon.ico",
             "/css/**",
             "/js/**",
             "/imgs/**",
