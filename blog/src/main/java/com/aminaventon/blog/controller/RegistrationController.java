@@ -23,6 +23,9 @@ public class RegistrationController {
     @Autowired
     private UserService userService;
 
+    public static final String REGISTRATION = "registration";
+    public static final String REDIRECT = "redirect:/";
+
     /**
      * This method receives HTTP GET request for /registration
      * @param model
@@ -37,7 +40,7 @@ public class RegistrationController {
         // add user to model
         model.addAttribute("user", user);
 
-        return "registration";
+        return REGISTRATION;
     }
 
     /**
@@ -51,7 +54,7 @@ public class RegistrationController {
         // save user
         userService.save(user);
 
-        return "redirect:/";
+        return REDIRECT;
     }
 
 

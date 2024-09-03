@@ -25,6 +25,9 @@ public class PostsController {
     @Autowired
     private UserService userService;
 
+    public static final String ERROR = "error_page";
+    public static final String REDIRECT = "redirect:/posts";
+
     /**
      * This method receives HTTP GET request for /posts/view/{id}
      * @param id, model
@@ -38,7 +41,7 @@ public class PostsController {
 
         // error page if id does not exist
         if (post == null) {
-            return "error_page";
+            return ERROR;
         }
 
         model.addAttribute("post", post);
@@ -89,7 +92,7 @@ public class PostsController {
         // save the post
         postService.savePost(post);
 
-        return "redirect:/posts";
+        return REDIRECT;
     }
 
     /**
@@ -119,7 +122,7 @@ public class PostsController {
 
         // error page if id does not exist
         if (post == null) {
-            return "error_page";
+            return ERROR;
         }
 
         // set id, title, content to edited post
@@ -129,7 +132,7 @@ public class PostsController {
 
         // save updated post
         postService.editPost(existingPost);
-        return "redirect:/posts";
+        return REDIRECT;
     }
 
     /**
@@ -143,7 +146,7 @@ public class PostsController {
         // delete post
         postService.deletePostById(id);
 
-        return "redirect:/posts";
+        return REDIRECT;
     }
 
 }

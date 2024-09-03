@@ -1,7 +1,6 @@
 package com.aminaventon.blog.controller;
 
 import com.aminaventon.blog.model.Post;
-import com.aminaventon.blog.model.User;
 import com.aminaventon.blog.service.PostService;
 import com.aminaventon.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import java.util.List;
@@ -31,6 +27,9 @@ public class MainController {
     @Autowired
     private UserService userService;
 
+    public static final String HOME = "index";
+    public static final String LOGIN = "login";
+
     /**
      * This method receives HTTP GET request for /
      * @param model
@@ -45,7 +44,7 @@ public class MainController {
                 .limit(3).collect(Collectors.toList());
         model.addAttribute("recentThreePosts", recentThreePosts);
 
-        return "index";
+        return HOME;
     }
 
     /**
@@ -55,7 +54,7 @@ public class MainController {
      */
     @GetMapping("/login")
     public String login(Model model) {
-        return "login";
+        return LOGIN;
     }
 
     /**
