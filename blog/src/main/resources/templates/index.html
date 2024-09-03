@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="~{master_template::site-head}">
+    <script type="text/javascript" src="script.js"></script>
     <title>My Polish Blog</title>
 </head>
 
@@ -11,7 +12,7 @@
 <h1>Welcome to My Polish Blog!</h1>
 <main id="posts">
     <article th:each="post : ${recentThreePosts}">
-        <h2 class="title" th:text="${post.title}">Post Title</h2>
+        <h2 onclick="changeColor(this, 'purple')" class="title" th:text="${post.title}">Post Title</h2>
         <div class="date">
             <i>Date: </i>
             <span th:text="${#dates.format(post.date, 'MM-dd-yyyy')}">08-27-2024</span>
