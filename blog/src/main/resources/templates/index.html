@@ -3,13 +3,23 @@
 
 <head th:replace="~{master_template::site-head}">
     <script type="text/javascript" src="script.js"></script>
+    <link rel="stylesheet" href="../static/css/styles.css" th:href="@{/css/styles.css}" />
     <title>My Polish Blog</title>
 </head>
 
 <body>
 
 <header th:replace="~{master_template::site-header}"></header>
-<h1>Welcome to My Polish Blog!</h1>
+
+<div class="banner">
+    <img class="bannerImage" th:src="@{/imgs/banner.jpg}" alt="Welcome"/>
+    <div class="bannerOverlay">
+        <div class="bannerTitle">Welcome!</div>
+        <p class="banner_description">My Polish Blog</p>
+        </div>
+    </div>
+</div>
+
 <main id="posts">
     <article th:each="post : ${recentThreePosts}">
         <h2 onclick="changeColor(this, 'purple')" class="title" th:text="${post.title}">Post Title</h2>
