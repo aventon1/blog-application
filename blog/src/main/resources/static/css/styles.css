@@ -142,19 +142,20 @@ body > footer {
 }
 
 .log-header {
-    margin-left: 30%;
+    width: 30%;
+    margin: 0 auto;
     font-size: 20px;
 }
 
 .login {
     display: flex;
     flex-direction: column;
-    margin-left: 0.1%;
     font-size: 20px;
 }
 
 label {
     display: block;
+    margin-top: 10px;
 }
 
 #email, #password {
@@ -162,7 +163,12 @@ label {
 }
 
 #button {
+    margin-left: 150px;
     margin-top: 10px;
-    padding: 10px 10px;
+    padding: 10px 50px;
     background-color:gold;
+}
+
+.form-new-user {
+    margin-top: 20px;
 }
