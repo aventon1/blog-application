@@ -67,6 +67,12 @@ body > footer {
     margin-top: 0.25em;
 
 }
+
+#logout {
+    padding: 2px 2px;
+    background-color:gold;
+}
+
 #user-info {
     float: right;
     margin-top: 18px;

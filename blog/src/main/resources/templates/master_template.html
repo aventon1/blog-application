@@ -20,7 +20,7 @@
     <div sec:authorize="isAuthenticated()" id="user-info">
         Hello, <b><span sec:authentication="name">User</span></b>
         <form method="post" th:action="@{/logout}">
-            <input type="submit" value="Logout"/>
+            <input type="submit" id="logout" value="Logout"/>
         </form>
     </div>
 </header>
