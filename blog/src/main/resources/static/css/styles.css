@@ -162,6 +162,38 @@ label {
     width: 400px;
 }
 
+#button-log {
+    margin-left: 150px;
+    margin-top: 10px;
+    padding: 10px 50px;
+    background-color:gold;
+}
+
+.form-new-user {
+    margin-top: 20px;
+}
+
+.reg-header {
+    width: 30%;
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+.registration {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+#first-name, #last-name, #email, #password {
+    width: 400px;
+}
+
 #button {
     margin-left: 150px;
     margin-top: 10px;
@@ -171,4 +203,11 @@ label {
 
 .form-new-user {
     margin-top: 20px;
+}
+
+#button-reg {
+    margin-left: 150px;
+    margin-top: 10px;
+    padding: 10px 50px;
+    background-color:gold;
 }
