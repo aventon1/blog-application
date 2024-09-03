@@ -8,6 +8,8 @@ A simple Spring Boot blog application for registered users to create and edit po
 - Java 22
 - Spring Boot 3.3.3
 - Maven
+- MySQL
+- Docker
 
 ### Installation
 
@@ -35,9 +37,6 @@ Load application at [http://localhost:8080/](http://localhost:8080/)
 ## Seed Data
 - Initial User data is loaded in ```UserDataLoader.java```
 - Spring Simple Security Login ```user1@email.com``` / ```user2@email.com``` Password ```password```
-
-
-
 
 ## Project Architecture
 - Model View Controller (MVC)
