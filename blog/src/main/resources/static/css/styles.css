@@ -216,3 +216,29 @@ label {
 .form-content {
     height: 100px
 }
+
+.btn-create {
+    padding: 10px 50px;
+    background-color:gold;
+    text-decoration: none;
+    border: black solid 1px;
+}
+
+.post-new {
+    margin-bottom: 20px;
+}
+
+.btn-update {
+    padding: 2px 2px;
+    background-color: #cbadf3;
+    text-decoration: none;
+    border: black solid 1px;
+
+}
+
+.btn-delete {
+    padding: 2px 2px;
+    background-color: #fd2e35;
+    text-decoration: none;
+    border: black solid 1px;
+}
