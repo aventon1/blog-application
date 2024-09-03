@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -21,9 +23,17 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 public class SecurityConfiguration {
 
+    /**
+     * This method encodes the password of a user
+     * @return BCryptPasswordEncoder
+     */
+    public BCryptPasswordEncoder passwordEncoder() {
+        return  new BCryptPasswordEncoder();
+    }
 
     /**
-     * This method loads user data for simple Spring Security
+     * This method loads user data for simple Spring Security and
+     * implements In Memory Authentication
      * @return InMemoryUserDetailsManager(user1,admin)
      */
     @Bean
@@ -42,7 +52,6 @@ public class SecurityConfiguration {
 
         return new InMemoryUserDetailsManager(user1,admin);
     }
-
 
     /**
      * This method lists auth resources for all users
