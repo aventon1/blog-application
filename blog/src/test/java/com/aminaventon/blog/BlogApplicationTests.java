@@ -24,7 +24,7 @@ class BlogApplicationTests {
 	 * @throws NullPointerException
 	 */
 	@Test
-	void contextLoads() throws NullPointerException {
+	void testFindByEmail() throws NullPointerException {
 		User user = new User();
 
 		user.setFirstName("TestUser");

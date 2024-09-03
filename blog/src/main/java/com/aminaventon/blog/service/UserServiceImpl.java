@@ -1,10 +1,7 @@
 package com.aminaventon.blog.service;
 
-import com.aminaventon.blog.model.Post;
-import com.aminaventon.blog.model.Role;
 import com.aminaventon.blog.model.User;
 import com.aminaventon.blog.repo.UserRepository;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,7 +10,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,6 +29,26 @@ public class UserServiceImpl implements UserService {
      */
     public User findByEmail(String email){
         return userRepository.findByEmail(email);
+    }
+
+    /**
+     * This method finds Users by last name
+     * @param firstName
+     * @return List
+     */
+    @Override
+    public List<User> findByFirstName(String firstName) {
+        return userRepository.findByFirstName(firstName);
+    }
+
+    /**
+     * This method finds Users by last name
+     * @param email
+     * @return List
+     */
+    @Override
+    public List<User> findByLastName(String email) {
+        return userRepository.findByLastName(email);
     }
 
     /**
