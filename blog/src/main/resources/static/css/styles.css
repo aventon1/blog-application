@@ -77,3 +77,66 @@ body > footer {
     margin-right: 10px;
 }
 
+.post-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.post-table thead tr {
+    background-color: #252154;
+    color: #ffffff;
+    text-align: left;
+}
+
+.post-table th,
+.post-table td {
+    padding: 10px 12px;
+}
+
+.post-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.post-table tbody tr:nth-child(even) {
+    background-color: #e3e2f6;
+}
+
+.post-table tbody tr:last-of-type {
+    border-bottom: 2px solid #252154;
+}
+
+.user-post-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.user-post-table thead tr {
+    background-color: #252154;
+    color: #ffffff;
+    text-align: left;
+}
+
+.user-post-table th,
+.user-post-table td {
+    padding: 10px 12px;
+}
+
+.user-post-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.user-post-table tbody tr:nth-child(even) {
+    background-color: #e3e2f6;
+}
+
+.user-post-table tbody tr:last-of-type {
+    border-bottom: 2px solid #252154;
+}
